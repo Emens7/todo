@@ -8,8 +8,94 @@ function dateHu() {
     
     const dayString = weekdays[d.getDay()];
 
-    const dateString = `${d.getFullYear()}. ${d.getMonth()}. ${d.getDay()}. ${dayString}`;
+    const dateString = `${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}. ${dayString}`;
 
     return dateString;
 }
 document.querySelector('.date').innerHTML = dateHu();
+
+const hozzaadGomb = document.querySelector('.buttonAdd');
+        const szovegDoboz = document.querySelector(".todo");
+        const lista = document.querySelector(".list");
+
+        hozzaadGomb.addEventListener('click', (event) => {
+
+            storageHozzaadas(szovegDoboz.value);
+            elemekMegjelenitese();
+
+            szovegDoboz.value = "";
+
+        });
+
+        //dom event delegation
+        document.querySelector(".list").addEventListener('click', function (event) {
+
+            if (event.target && event.target.classList.contains("gomb-torles")) {
+                const aktualisGomb = event.target;
+
+                storageTorles(aktualisGomb.dataset.index);
+                elemekMegjelenitese();
+
+            }
+            
+
+        });
+
+        const storageHozzaadas = (szoveg) => {
+            let elemek = [];
+
+            if (localStorage.getItem("elemek") !== null) {
+                elemek = JSON.parse(localStorage.getItem("elemek"));
+            }
+
+            elemek.push(szovegDoboz.value);
+
+            localStorage.setItem("elemek", JSON.stringify(elemek));
+        };
+
+        const storageTorles = (index) => {
+
+            const elemek = JSON.parse(localStorage.getItem("elemek"));
+            elemek.splice(index, 1);
+            localStorage.setItem("elemek", JSON.stringify(elemek));
+
+        };
+
+        const ujElem = (szoveg, index) => {
+
+            const template = `
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div><h2>${szoveg}</h2></div>
+                    <div class="d-flex justify-content-end">
+                    <button data-index="${index}" class= "info gomb-szerkesztes mr-1">Szerkesztés</button>
+                    <button data-index="${index}" class="danger gomb-torles">Törlés</button>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            lista.innerHTML = template + lista.innerHTML;
+
+        };
+
+        const elemekMegjelenitese = () => {
+
+            lista.innerHTML = "";
+
+            if (localStorage.getItem("elemek") !== null) {
+                const elemek = JSON.parse(localStorage.getItem("elemek"));
+                
+                elemek.forEach((elem, index) => {
+                    ujElem(elem, index);
+                });
+            } 
+
+        }
+
+        //Oldal betöltésekor
+        window.addEventListener('DOMContentLoaded', (event) => {
+
+            elemekMegjelenitese();
+
+        });

@@ -9,6 +9,10 @@ body {
     background-color: salmon;
 }
 
+h2 {
+  font-size: 2.2rem;
+}
+
 .date {
     font-weight: 800;
     font-size: x-large;
@@ -21,7 +25,16 @@ body {
     flex-direction: column;
     background-color: #f1f1f1;
     color: rgb(54, 55, 59);
-    width: 50%;
+    width: 45%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding:  2rem;
+    border-radius: 0.5rem;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
   }
   
 
@@ -32,10 +45,10 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 21px;
+    font-size: 1.4rem;
   }
 
-  .button {
+  .buttonAdd {
     background-color: #f4511e;
     border: none;
     color: white;
@@ -48,6 +61,39 @@ body {
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
+    border-radius: 0.5rem;
+  }
+
+  .success {
+    border-color: #4CAF50;
+    color: green;
   }
   
-  .button:hover {opacity: 1}
+  .success:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .info {
+    border-color: #2196F3;
+    color: dodgerblue;
+  }
+
+  .info:hover {
+    background: #2196F3;
+    color: white;
+  }
+
+  .danger {
+    border-color: #f44336;
+    color: red;
+  }
+  
+  .danger:hover {
+    background: #f44336;
+    color: white;
+  }
+
+  .buttonAdd:hover {
+    opacity: 1
+  }
