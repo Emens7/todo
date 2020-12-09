@@ -22,7 +22,7 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
 
             storageHozzaadas(szovegDoboz.value);
             elemekMegjelenitese();
-
+            arrElements();
             szovegDoboz.value = "";
 
         });
@@ -38,7 +38,7 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
 
             }
             
-
+            arrElements();
         });
 
         const storageHozzaadas = (szoveg) => {
@@ -67,7 +67,6 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
             <div class="card mb-2">
                 <div class="card-body">
                     
-                
                 <h2><input class="checked" type="checkbox" value="Car">${szoveg}</h2>
                 <button data-index="${index}" class="danger gomb-torles"><i class="fas fa-2x fa-trash-alt"></i></button>
 
@@ -98,5 +97,12 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
         window.addEventListener('DOMContentLoaded', (event) => {
 
             elemekMegjelenitese();
-
+            arrElements();
         });
+
+        function arrElements() {
+            let todoList = JSON.parse(localStorage.getItem("elemek"));
+            document.querySelector('.xSpan').innerHTML = todoList.length;
+        }
+
+    
