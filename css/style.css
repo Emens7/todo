@@ -94,7 +94,7 @@ h2 {
 
   .danger {
     margin: auto;
-    margin-right: 1.5rem;
+    margin-right: 1.4rem;
     background: #f44336;
     color: white;
     width: 50px;
@@ -106,7 +106,8 @@ h2 {
   }
   
   .card-body:hover .danger {
-   
+    width: 50px;
+    height: 50px;
     visibility: visible;
   }
 
@@ -116,7 +117,10 @@ h2 {
 
   .card-body {
     display: flex;
-    background-color: seashell;
+    margin: .5rem;
+    background-color: rgb(233, 210, 83);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   input.checked {

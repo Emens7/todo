@@ -20,11 +20,13 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
 
         hozzaadGomb.addEventListener('click', (event) => {
 
-            storageHozzaadas(szovegDoboz.value);
-            elemekMegjelenitese();
-            arrElements();
-            szovegDoboz.value = "";
+            if(szovegDoboz.value.trim() !== '') {
 
+                storageHozzaadas(szovegDoboz.value);
+                elemekMegjelenitese();
+                arrElements();
+                szovegDoboz.value = "";
+            }
         });
 
         //dom event delegation
