@@ -105,4 +105,13 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
             document.querySelector('.xSpan').innerHTML = todoList.length;
         }
 
+        function check() {
+            if(document.querySelector('.checked').checked) {
+
+            };
+            
+        }
+
+        check();
+
     

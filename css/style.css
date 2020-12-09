@@ -97,6 +97,7 @@ h2 {
     text-align: center;
     border-radius: 0.5rem;
     visibility: hidden;
+    cursor: pointer;
   }
   
   .card-body:hover .danger {
@@ -106,13 +107,7 @@ h2 {
 
   .buttonAdd:hover {
     opacity: 1
-  }
-
-  .card mb-2 {
-    display: flex;
-    
-  }
-  
+  }  
 
   .card-body {
     display: flex;
@@ -120,17 +115,22 @@ h2 {
   }
 
   input.checked {
-    height: 50px;
-    width:  50px;
+    height: 40px;
+    width:  40px;
+    margin: 1.5rem;
   }
 
   input:checked {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
   }
 
 .xSpan {
   color: orangered;
   font-size: 1.5rem;
   font-weight: 600;
+}
+
+.off {
+  display: none;
 }
