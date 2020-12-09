@@ -67,7 +67,7 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
             <div class="card mb-2">
                 <div class="card-body">
                     
-                <h2><input class="checked" type="checkbox" value="Car">${szoveg}</h2>
+                <h2><input data-index="${index}" class="checked" type="checkbox" value="false">${szoveg}</h2>
                 <button data-index="${index}" class="danger gomb-torles"><i class="fas fa-2x fa-trash-alt"></i></button>
 
                 </div>
@@ -100,18 +100,30 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
             arrElements();
         });
 
-        function arrElements() {
+        const arrElements = () => {
             let todoList = JSON.parse(localStorage.getItem("elemek"));
             document.querySelector('.xSpan').innerHTML = todoList.length;
-        }
+        } 
+    
 
-        function check() {
-            if(document.querySelector('.checked').checked) {
+        document.querySelector(".list").addEventListener('click', function (event) {
 
-            };
+            if (event.target && event.target.classList.contains("checked")) {
+                const aktualisCheckBox = event.target;
+
+               alert("Checked! Index: " + aktualisCheckBox.dataset.index);
+
+            }
             
-        }
+        });
 
-        check();
+       document.querySelector('.Clear').addEventListener('click', () => {
+            localStorage.setItem('elemek', '[]');
+            elemekMegjelenitese();
+            arrElements();
+        });
+         
 
+    
+    
     
