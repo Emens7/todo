@@ -66,12 +66,13 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
             const template = `
             <div class="card mb-2">
                 <div class="card-body">
-                    <div><h2>${szoveg}</h2></div>
-                    <div class="d-flex justify-content-end">
-                    <button data-index="${index}" class= "info gomb-szerkesztes mr-1">Szerkesztés</button>
-                    <button data-index="${index}" class="danger gomb-torles">Törlés</button>
-                    </div>
+                    
+                
+                <h2><input class="checked" type="checkbox" value="Car">${szoveg}</h2>
+                <button data-index="${index}" class="danger gomb-torles"><i class="fas fa-2x fa-trash-alt"></i></button>
+
                 </div>
+            
             </div>
             `;
 

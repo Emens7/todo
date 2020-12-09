@@ -10,7 +10,10 @@ body {
 }
 
 h2 {
-  font-size: 2.2rem;
+  font-size: 2.25em;
+  margin: 1.3rem;
+  text-align: center;
+  color: grey;
 }
 
 .date {
@@ -85,15 +88,42 @@ h2 {
   }
 
   .danger {
-    border-color: #f44336;
-    color: red;
-  }
-  
-  .danger:hover {
+    margin: auto;
+    margin-right: 0.5rem;
     background: #f44336;
     color: white;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 0.5rem;
+    visibility: hidden;
+  }
+  
+  .card-body:hover .danger {
+   
+    visibility: visible;
   }
 
   .buttonAdd:hover {
     opacity: 1
   }
+
+  .card mb-2 {
+    display: flex;
+    
+  }
+  
+
+  .card-body {
+    display: flex;
+    background-color: seashell;
+  }
+
+  input.checked {
+    height: 50px;
+    width:  50px;
+  }
+
+  input:checked {
+    height: 50px;
+    width: 50px;
