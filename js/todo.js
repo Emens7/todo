@@ -39,10 +39,12 @@ document.querySelector('.date').innerHTML = dateHu();
                 const aktualisGomb = event.target;
 
                 storageTorles(aktualisGomb.dataset.index);
+
+                elemekMegjelenitese();
+                arrElements();
                 
             }
-            elemekMegjelenitese();
-            arrElements();
+            
         });
 
         const storageHozzaadas = (szoveg) => {
@@ -118,20 +120,23 @@ document.querySelector('.date').innerHTML = dateHu();
         document.querySelector(".list").addEventListener('click', function (event) {
 
             if (event.target && event.target.classList.contains("checked")) {
+                
+                setTimeout( () => {
+                    const aktualisCheckBox = event.target;
 
-                const aktualisCheckBox = event.target;
-
-                const checkelemek = JSON.parse(localStorage.getItem("elemek"));
-
-                const arrKey = aktualisCheckBox.dataset.index;
-
-                const valueCheck = checkelemek[arrKey];
-            
-             
-             checkHozzaadas(valueCheck);
-             storageCElemekTorles(arrKey);
-             elemekMegjelenitese();
-             arrElements();
+                    const checkelemek = JSON.parse(localStorage.getItem("elemek"));
+    
+                    const arrKey = aktualisCheckBox.dataset.index;
+    
+                    const valueCheck = checkelemek[arrKey];
+                
+                 
+                    checkHozzaadas(valueCheck);
+                    storageCElemekTorles(arrKey);
+                    elemekMegjelenitese();
+                    arrElements();
+                }, 1000) 
+              
             }
             
         });
@@ -162,7 +167,7 @@ document.querySelector('.date').innerHTML = dateHu();
 
         };
 
-        // Checked lista
+        // Checked lista megjelenítése eltávolítása
         const checkedLists = document.querySelector('.Hide');
         const checkedListsMap = document.querySelector('.checked__list');
 
@@ -243,9 +248,9 @@ document.querySelector('.date').innerHTML = dateHu();
             localStorage.setItem('elemek', '[]');
             localStorage.setItem('checkelemek', '[]');
 
-            
+            elemekMegjelenitese();
+            arrElements();
             checkedemekMegjelenitese();
             storageCElemekTorles(arrKey);
-            arrElements();
-            elemekMegjelenitese();
+            
         });

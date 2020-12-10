@@ -104,6 +104,10 @@ h2 {
     visibility: hidden;
     cursor: pointer;
   }
+
+  .danger i {
+    pointer-events: none;
+  }
   
   .card-body:hover .danger {
     width: 50px;
