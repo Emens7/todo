@@ -39,9 +39,9 @@ document.querySelector('.date').innerHTML = dateHu();
                 const aktualisGomb = event.target;
 
                 storageTorles(aktualisGomb.dataset.index);
-                elemekMegjelenitese();
+                
             }
-            
+            elemekMegjelenitese();
             arrElements();
         });
 
@@ -65,6 +65,7 @@ document.querySelector('.date').innerHTML = dateHu();
 
         };
 
+       
         const ujElem = (szoveg, index) => {
 
             const template = `
@@ -104,6 +105,8 @@ document.querySelector('.date').innerHTML = dateHu();
             arrElements();
         });
 
+        //Számláló elvégzendő feladatok
+
         const arrElements = () => {
             let todoList = JSON.parse(localStorage.getItem("elemek"));
             document.querySelector('.xSpan').innerHTML = todoList.length;
@@ -123,15 +126,14 @@ document.querySelector('.date').innerHTML = dateHu();
                 const arrKey = aktualisCheckBox.dataset.index;
 
                 const valueCheck = checkelemek[arrKey];
-
-               alert(valueCheck);
-
+            
+             
              checkHozzaadas(valueCheck);
              storageCElemekTorles(arrKey);
+             elemekMegjelenitese();
+             arrElements();
             }
-
-    
-           
+            
         });
 
         // checkelemek localStorage létrehozása
@@ -165,23 +167,23 @@ document.querySelector('.date').innerHTML = dateHu();
         const checkedListsMap = document.querySelector('.checked__list')
 
         checkedLists.addEventListener('click', () => {
-
-            const checkedemekMegjelenitese = () => {
-
-                checkedLists.innerHTML = "";
-
-                if (localStorage.getItem("checkelemek") !== null) {
-
-                    const checkelemek = JSON.parse(localStorage.getItem("checkelemek"));
-                    
-                    checkelemek.forEach((elem, index) => {
-                        checkElem(elem, index);
-                    });
-                } 
-            }   
-            
+            elemekMegjelenitese();
             checkedemekMegjelenitese()
         });
+
+        const checkedemekMegjelenitese = () => {
+
+            checkedListsMap.innerHTML = "";
+
+            if (localStorage.getItem("checkelemek") !== null) {
+
+                const checkelemek = JSON.parse(localStorage.getItem("checkelemek"));
+                
+                checkelemek.forEach((elem, index) => {
+                    checkElem(elem, index);
+                });
+            } 
+        }   
 
         const checkElem = (szoveg, index) => {
 
@@ -189,8 +191,8 @@ document.querySelector('.date').innerHTML = dateHu();
             <div class="card">
                 <div class="card-body">
                     
-                <h2><input data-index="${index}" class="checked" type="checkbox" checked="checked" value="">${szoveg}</h2>
-                <button data-index="${index}" class="danger gomb-torles"><i class="fas fa-2x fa-trash-alt"></i></button>
+                <h2><input data-index="${index}" class="checked" type="checkbox" checked="checked" value="false">${szoveg}</h2>
+                <button data-index="${index}" class="danger gomb-torles2"><i class="fas fa-2x fa-trash-alt"></i></button>
 
                 </div>
             
@@ -200,10 +202,39 @@ document.querySelector('.date').innerHTML = dateHu();
             checkedListsMap.innerHTML = template2 + checkedListsMap.innerHTML;
 
         }
+
+        //checkelem törlés
+
+        const checkDelete = document.querySelector('.checked__list');
+        checkDelete.addEventListener('click', function (event) {
+
+            if (event.target && event.target.classList.contains("gomb-torles2")) {
+                const aktualisGomb = event.target;
+
+                storageTorles2(aktualisGomb.dataset.index);
+                checkedemekMegjelenitese()
+                arrElements();
+            }
+            
+           
+        });
+
+        const storageTorles2 = (index) => {
+            const checkelemek = JSON.parse(localStorage.getItem("checkelemek"));
+            checkelemek.splice(index, 1);
+            localStorage.setItem("checkelemek", JSON.stringify(checkelemek));
+        }
+
+
         // Teljes törlés
 
        document.querySelector('.Clear').addEventListener('click', () => {
             localStorage.setItem('elemek', '[]');
-            elemekMegjelenitese();
+            localStorage.setItem('checkelemek', '[]');
+
+            
+            checkedemekMegjelenitese();
+            storageCElemekTorles(arrKey);
             arrElements();
+            elemekMegjelenitese();
         });
