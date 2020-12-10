@@ -164,7 +164,18 @@ document.querySelector('.date').innerHTML = dateHu();
 
         // Checked lista
         const checkedLists = document.querySelector('.Hide');
-        const checkedListsMap = document.querySelector('.checked__list')
+        const checkedListsMap = document.querySelector('.checked__list');
+
+        const showHide = checkedLists.addEventListener('click', (event) => {
+            if(checkedListsMap.style.display === '') {
+                checkedListsMap.style.display = 'none';
+                
+            } else {
+                checkedListsMap.style.display = '';
+            }
+         }
+            )
+        
 
         checkedLists.addEventListener('click', () => {
             elemekMegjelenitese();
