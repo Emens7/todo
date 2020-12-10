@@ -123,6 +123,18 @@ h2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
+  .checked__list:hover .danger {
+    width: 50px;
+    height: 50px;
+    visibility: visible;
+  }
+
+  .checked__list:hover {
+    opacity: 1
+  }  
+
+  
+
   input.checked {
     height: 40px;
     width:  40px;
@@ -142,4 +154,9 @@ h2 {
 
 .footer {
   margin: 2rem;
+}
+
+.todo {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 }

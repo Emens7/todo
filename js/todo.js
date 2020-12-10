@@ -1,4 +1,4 @@
-
+// Dátum
 
 function dateHu() {
 
@@ -12,9 +12,12 @@ function dateHu() {
 
     return dateString;
 }
+
 document.querySelector('.date').innerHTML = dateHu();
 
-const hozzaadGomb = document.querySelector('.buttonAdd');
+// Hozzáad
+
+        const hozzaadGomb = document.querySelector('.buttonAdd');
         const szovegDoboz = document.querySelector(".todo");
         const lista = document.querySelector(".list");
 
@@ -37,7 +40,6 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
 
                 storageTorles(aktualisGomb.dataset.index);
                 elemekMegjelenitese();
-
             }
             
             arrElements();
@@ -106,26 +108,102 @@ const hozzaadGomb = document.querySelector('.buttonAdd');
             let todoList = JSON.parse(localStorage.getItem("elemek"));
             document.querySelector('.xSpan').innerHTML = todoList.length;
         } 
+
+        // CheckedList
     
 
         document.querySelector(".list").addEventListener('click', function (event) {
 
             if (event.target && event.target.classList.contains("checked")) {
+
                 const aktualisCheckBox = event.target;
 
-               alert("Checked! Index: " + aktualisCheckBox.dataset.index);
+                const checkelemek = JSON.parse(localStorage.getItem("elemek"));
 
+                const arrKey = aktualisCheckBox.dataset.index;
+
+                const valueCheck = checkelemek[arrKey];
+
+               alert(valueCheck);
+
+             checkHozzaadas(valueCheck);
+             storageCElemekTorles(arrKey);
             }
-            
+
+    
+           
         });
+
+        // checkelemek localStorage létrehozása
+
+       const checkHozzaadas = (szoveg) => {
+
+            let checkelemek = [];
+
+            if (localStorage.getItem("checkelemek") !== null) {
+                checkelemek = JSON.parse(localStorage.getItem("checkelemek"));
+            }
+
+            checkelemek.push(szoveg);
+
+            localStorage.setItem("checkelemek", JSON.stringify(checkelemek));
+
+        };
+
+        // Törlés az elemek localStorage-ból
+
+        const storageCElemekTorles = (index) => {
+
+            const elemek = JSON.parse(localStorage.getItem("elemek"));
+            elemek.splice(index, 1);
+            localStorage.setItem("elemek", JSON.stringify(elemek));
+
+        };
+
+        // Checked lista
+        const checkedLists = document.querySelector('.Hide');
+        const checkedListsMap = document.querySelector('.checked__list')
+
+        checkedLists.addEventListener('click', () => {
+
+            const checkedemekMegjelenitese = () => {
+
+                checkedLists.innerHTML = "";
+
+                if (localStorage.getItem("checkelemek") !== null) {
+
+                    const checkelemek = JSON.parse(localStorage.getItem("checkelemek"));
+                    
+                    checkelemek.forEach((elem, index) => {
+                        checkElem(elem, index);
+                    });
+                } 
+            }   
+            
+            checkedemekMegjelenitese()
+        });
+
+        const checkElem = (szoveg, index) => {
+
+            const template2 = `
+            <div class="card">
+                <div class="card-body">
+                    
+                <h2><input data-index="${index}" class="checked" type="checkbox" checked="checked" value="">${szoveg}</h2>
+                <button data-index="${index}" class="danger gomb-torles"><i class="fas fa-2x fa-trash-alt"></i></button>
+
+                </div>
+            
+            </div>
+            `;
+
+            checkedListsMap.innerHTML = template2 + checkedListsMap.innerHTML;
+
+        }
+        // Teljes törlés
 
        document.querySelector('.Clear').addEventListener('click', () => {
             localStorage.setItem('elemek', '[]');
             elemekMegjelenitese();
             arrElements();
         });
-         
-
-    
-    
-    
